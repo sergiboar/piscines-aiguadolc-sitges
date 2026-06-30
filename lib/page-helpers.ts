@@ -1,0 +1,9 @@
+import type { Metadata } from "next";
+import { contactConfig } from "./contact-config";
+import { pages } from "./site-data";
+export function meta(path:string): Metadata { const p=pages.find(x=>x.path===path)!; return {title:p.title,description:p.description,alternates:{canonical:p.path},openGraph:{title:p.title,description:p.description,url:p.path}} }
+export function breadcrumb(path:string,name:string){return {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Inicio",item:contactConfig.siteUrl},{"@type":"ListItem",position:2,name,item:contactConfig.siteUrl+path}]}}
+export function serviceSchema(name:string,path:string,description:string){return {"@context":"https://schema.org","@type":"Service",name,description,provider:{"@type":"Organization",name:contactConfig.companyName},areaServed:["Sitges","Aiguadolç","Costa del Garraf"],url:contactConfig.siteUrl+path}}
+export const faqsConstruccion=["¿Se puede solicitar una valoración inicial para construir una piscina?","¿Trabajáis en Aiguadolç, Terramar o Vinyet?","¿Podéis integrar piscina, terraza y jardín?","¿Dais precios cerrados sin valorar el proyecto?","¿También hacéis reformas si ya existe una piscina?"];
+export const faqsReforma=["¿Cuándo conviene reformar una piscina?","¿Podéis renovar acabados y entorno exterior a la vez?","¿Trabajáis en Aiguadolç, Terramar o Vinyet?","¿Podéis orientar un presupuesto antes de visitar?","¿También valoráis piscinas comunitarias?"];
+export function faqSchema(qs:string[]){return {"@context":"https://schema.org","@type":"FAQPage",mainEntity:qs.map(q=>({"@type":"Question",name:q,acceptedAnswer:{"@type":"Answer",text:"Sí, revisamos cada caso de forma personalizada para orientar la solución adecuada antes de preparar una propuesta."}}))}}
