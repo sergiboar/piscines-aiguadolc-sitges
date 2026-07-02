@@ -1,0 +1,1 @@
+import type { MetadataRoute } from "next";import { contactConfig } from "@/lib/contact-config";export default function robots():MetadataRoute.Robots{return{rules:{userAgent:"*",allow:"/"},sitemap:`${contactConfig.siteUrl}/sitemap.xml`}}

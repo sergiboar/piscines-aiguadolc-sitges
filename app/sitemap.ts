@@ -1,0 +1,1 @@
+import type { MetadataRoute } from "next";import { contactConfig } from "@/lib/contact-config";import { pages } from "@/lib/site-data";export default function sitemap():MetadataRoute.Sitemap{return pages.map(p=>({url:contactConfig.siteUrl+p.path,lastModified:new Date(),changeFrequency:p.path==="/"?"weekly":"monthly",priority:p.path==="/"?1:.75}))}
